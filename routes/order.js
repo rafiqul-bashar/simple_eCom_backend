@@ -37,7 +37,8 @@ router.get("/:email", async (req, res) => {
 //Delete Order
 router.delete("/:email", async (req, res) => {
   try {
-    await Order.findByIdAndDelete({req.params.email});
+    const email = req.params.email
+    await Order.findByIdAndDelete({email});
     res.status(200).json("Order Has been Deleted");
   } catch (err) {
     res.status(500).json(err);
