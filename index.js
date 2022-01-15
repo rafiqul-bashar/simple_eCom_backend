@@ -1,12 +1,18 @@
 const express = require("express");
+const mongoose = require('mongoose')
 const cors = require("cors");
-const mongoose = require("mongoose");
-const app = express();
-const port = Process.env.PORT || 5000;
 
+const app = express();
+
+const port = process.env.PORT || 5000;
+// middleware used
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
+
+//Connecting to Mongo
+mongoose.connect(process.env.MONGOURL).then(()=>console.log('db connected successfully')).catch((err)=>{console.log(err);}) 
+
 
 mongoose
   .connect(
